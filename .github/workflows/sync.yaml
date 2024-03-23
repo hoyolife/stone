@@ -1,0 +1,17 @@
+name: Update from upstream
+on:
+  schedule:
+    - cron: '0 18 * * *'  # 每天下午6点执行（UTC时间）
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Fetch upstream changes
+        run: git fetch upstream
+
+      - name: Merge upstream changes
+        run: git merge upstream/main  # 如果你的上游分支是 main，则使用这个命令
